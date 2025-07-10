@@ -11,38 +11,39 @@
     <%- include("../partials/nav.ejs") %>
 
     <h1>Add a song</h1>
-    <form action="/songs" method="POST"></form>
-    <div>
-      <label for="name">Name</label>
-      <input type="text" name="name" id="name" placeholder="Name" required />
-    </div>
+    <form action="/songs" method="POST">
+      <div>
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" placeholder="Name" required />
+      </div>
 
-    <div>
-      <label for="artist">Artist</label>
-      <input
-        type="text"
-        name="artist"
-        id="artist"
-        placeholder="Artist"
-        required
-      />
-    </div>
+      <div>
+        <label for="artist">Artist</label>
+        <input
+          type="text"
+          name="artist"
+          id="artist"
+          placeholder="Artist"
+          required
+        />
+      </div>
 
-    <div>
-      <label for="album">Album</label>
-      <input type="text" name="album" id="album" placeholder="Album" />
-    </div>
+      <div>
+        <label for="album">Album</label>
+        <input type="text" name="album" id="album" placeholder="Album" />
+      </div>
 
-    <div>
-      <label for="releaseYear">Release year</label>
-      <input
-        type="number"
-        name="releaseYear"
-        id="releaseYear"
-        placeholder="Release year"
-      />
-    </div>
+      <div>
+        <label for="releaseYear">Release year</label>
+        <input
+          type="number"
+          name="releaseYear"
+          id="releaseYear"
+          placeholder="Release year"
+        />
+      </div>
 
-    <button type="submit">Add song</button>
+      <button type="submit">Add song</button>
+    </form>
   </body>
 </html>
