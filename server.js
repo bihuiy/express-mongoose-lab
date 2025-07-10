@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import morgan from "morgan";
 import "dotenv/config";
+import methodOverride from "method-override";
 
 const app = express();
 const port = process.env.PORT;
@@ -9,6 +10,7 @@ const port = process.env.PORT;
 // middleware
 app.use(express.urlencoded()); // Without this line, all payload data will be undefined in our routes
 app.use(morgan("dev"));
+app.use(methodOverride("_method"));
 
 // define a schema
 const songSchema = new mongoose.Schema({
@@ -52,11 +54,43 @@ app.get("/songs/:songId", async (req, res) => {
   }
 });
 
+// edit - show a form to edit an existing song's details
+app.get("/songs/:songId/edit", async (req, res) => {
+  try {
+    const song = await Song.findById(req.params.songId);
+    return res.render("songs/edit.ejs", {
+      song: song,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// update - update a specific song's details
+app.put("/songs/:songId", async (req, res) => {
+  try {
+    const updateSong = await Song.findByIdAndUpdate(req.params.songId, req.body);
+    return res.redirect(`/songs/${updateSong._id}`);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 // create - add a new song to the list, requires asynchronous database writing
 app.post("/songs", async (req, res) => {
   try {
     const createdSong = await Song.create(req.body);
     return res.redirect(`/songs/${createdSong._id}`);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// delete - remove a specific song from the list
+app.delete("/songs/:songId", async (req, res) => {
+  try {
+    await Song.findByIdAndDelete(req.params.songId);
+    return res.redirect("/songs");
   } catch (error) {
     console.log(error);
   }

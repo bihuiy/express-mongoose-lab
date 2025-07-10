@@ -1,0 +1,64 @@
+<!-- views/edit.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit a song</title>
+  </head>
+  <body>
+    <%- include("../partials/nav.ejs") %>
+
+    <h1>Edit a song</h1>
+    <form action="/songs/<%= song._id %>?_method=PUT" method="POST">
+      <div>
+        <label for="name">Name</label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Name"
+          required
+          value="<%= song.name %>"
+        />
+      </div>
+
+      <div>
+        <label for="artist">Artist</label>
+        <input
+          type="text"
+          name="artist"
+          id="artist"
+          placeholder="Artist"
+          required
+          value="<%= song.artist %>"
+        />
+      </div>
+
+      <div>
+        <label for="album">Album</label>
+        <input
+          type="text"
+          name="album"
+          id="album"
+          placeholder="Album"
+          value="<%= song.album %>"
+        />
+      </div>
+
+      <div>
+        <label for="releaseYear">Release year</label>
+        <input
+          type="number"
+          name="releaseYear"
+          id="releaseYear"
+          placeholder="Release year"
+          value="<%= song.releaseYear %>"
+        />
+      </div>
+
+      <button type="submit">Save changes</button>
+    </form>
+  </body>
+</html>

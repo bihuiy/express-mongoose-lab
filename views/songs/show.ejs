@@ -11,6 +11,15 @@
     <%- include("../partials/nav.ejs") %>
 
     <h1><%= song.name %></h1>
-    <h2>By <%= song.artist %></h2>
+    <h2>by <%= song.artist %> · <%= song.album %> · <%= song.releaseYear %></h2>
+
+    <section class="controls">
+      <form action="/songs/<%= song._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete this song</button>
+      </form>
+      <a href="/songs/<%= song._id %>/edit">
+        <button type="submit">Edit this song</button>
+      </a>
+    </section>
   </body>
 </html>
