@@ -14,7 +14,7 @@ app.use(morgan("dev"));
 const songSchema = new mongoose.Schema({
   name: { type: String, required: true },
   artist: { type: String, required: true },
-  Album: { type: String },
+  album: { type: String },
   releaseYear: String,
 });
 
